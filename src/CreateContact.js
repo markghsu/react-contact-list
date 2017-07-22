@@ -1,14 +1,21 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import ImageInput from './ImageInput.js';
-import serializeForm from 'form-serialize';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import ImageInput from './ImageInput.js'
+import serializeForm from 'form-serialize'
+import PropTypes from 'prop-types'
 
 class CreateContact extends Component {
+	static propTypes = {
+		onCreateContact: PropTypes.func.isRequired
+	}
+
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const values = serializeForm(e.target, { hash:true });
 		console.log(values);
+		this.props.onCreateContact(values);
 	}
+
 	render() {
 		return (
 			<div>

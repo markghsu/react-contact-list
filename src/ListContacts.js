@@ -27,7 +27,7 @@ class ListContacts extends React.Component {
 	}
 
 	render(){
-		const { contacts, onDeleteContact, onAdd } = this.props;
+		const { contacts, onDeleteContact } = this.props;
 		const { query } = this.state;
 		let showingContacts;
 		if (query) {
