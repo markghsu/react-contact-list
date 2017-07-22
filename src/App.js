@@ -23,11 +23,19 @@ class App extends Component {
 			}));
 		ContactsAPI.remove(contact);
 	}
+
+	changeScreen = () => {
+		this.setState((currState) => 
+			({ 
+				screen: currState.screen==='list'?'create':'list'
+			}));
+	}
+
 	render() {
 		return (
 			<div className='app'>
 				{(this.state.screen === 'list' &&
-					<ListContacts onDeleteContact={this.removeContact} contacts={this.state.contacts} />
+					<ListContacts onDeleteContact={this.removeContact} onAdd={this.changeScreen} contacts={this.state.contacts} />
 				)}
 				{(this.state.screen === 'create' &&
 					<CreateContact />

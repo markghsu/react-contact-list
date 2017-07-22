@@ -6,7 +6,8 @@ import sortBy from 'sort-by'
 class ListContacts extends React.Component {
 	static propTypes = {
 		contacts: PropTypes.array.isRequired,
-		onDeleteContact: PropTypes.func.isRequired
+		onDeleteContact: PropTypes.func.isRequired,
+		onAdd: PropTypes.func.isRequired
 	}
 
 	state = {
@@ -26,7 +27,7 @@ class ListContacts extends React.Component {
 	}
 
 	render(){
-		const { contacts, onDeleteContact } = this.props;
+		const { contacts, onDeleteContact, onAdd } = this.props;
 		const { query } = this.state;
 		let showingContacts;
 		if (query) {
@@ -47,6 +48,7 @@ class ListContacts extends React.Component {
 						value={query}
 						onChange={(evt)=>this.updateQuery(evt.target.value)}
 					/>
+					<a href="#" className='add-contact' onClick={()=> onAdd()}>Add Contact</a>
 				</form>
 				{showingContacts.length !== contacts.length && (
 					<div className='showing-contacts'>
@@ -54,6 +56,7 @@ class ListContacts extends React.Component {
 					<button onClick={this.clearQuery}>Show All</button>
 					</div>
 				)}
+				
 				<ol className='contact-list'>
 					{
 						showingContacts.map(contact => (
